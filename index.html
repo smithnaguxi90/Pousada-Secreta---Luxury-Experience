@@ -5,18 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pousada Secreta | Luxury Experience</title>
 
-    <!-- ÍCONE PARA NAVEGADOR (Favicon) - Mantive o SVG pois funciona bem em Desktops -->
+    <!-- ÍCONE PARA NAVEGADOR (Favicon) -->
     <link
       rel="icon"
       href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22><rect width=%22512%22 height=%22512%22 rx=%22100%22 fill=%22%230F172A%22/><circle cx=%22256%22 cy=%22256%22 r=%22160%22 stroke=%22%23C5A059%22 stroke-width=%2230%22 fill=%22none%22/><path d=%22M256 120L285 225L390 256L285 285L256 390L225 285L120 256L225 225Z%22 fill=%22%23F8F8F8%22/><circle cx=%22256%22 cy=%22256%22 r=%2240%22 fill=%22%23C5A059%22/></svg>"
       type="image/svg+xml"
     />
 
-    <!-- ÍCONE PARA SMARTPHONE (Apple Touch Icon) - ATUALIZADO COM SEU CÓDIGO -->
-    <link rel="apple-touch-icon" href="./icon-pousada.png" />
+    <!-- ÍCONE PARA SMARTPHONE (Apple Touch Icon) -->
+    <link rel="apple-touch-icon" href="./assets/icon-pousada.png" />
+
+    <!-- CSS Externo -->
+    <link rel="stylesheet" href="style.css" />
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Configuração do Tailwind -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              azul: {
+                500: "#3B82F6",
+                600: "#2563EB",
+                900: "#0F172A",
+              },
+              dourado: "#C5A059",
+              areia: "#f8f8f8",
+            },
+          },
+        },
+      };
+    </script>
 
     <!-- Google Fonts -->
     <link
@@ -38,82 +60,6 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
     />
-
-    <style>
-      body {
-        font-family: "Source Sans Pro", sans-serif;
-      }
-      h1,
-      h2,
-      h3,
-      h4 {
-        font-family: "Playfair Display", serif;
-      }
-
-      /* Navbar Transição */
-      .nav-scrolled {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-      }
-
-      .nav-transparent {
-        background: transparent;
-        padding-top: 20px;
-        padding-bottom: 20px;
-      }
-
-      /* Hero Parallax Otimizado */
-      .hero-bg {
-        background-image: url("https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        /* Scroll no mobile melhora performance e evita bugs de viewport */
-        background-attachment: scroll;
-      }
-
-      @media (min-width: 1024px) {
-        .hero-bg {
-          background-attachment: fixed;
-        }
-      }
-
-      /* Custom Scrollbar */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #1e3a8a;
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #3b82f6;
-      }
-    </style>
-
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              azul: {
-                500: "#3B82F6",
-                600: "#2563EB",
-                900: "#0F172A",
-              },
-              dourado: "#C5A059",
-              areia: "#f8f8f8",
-            },
-          },
-        },
-      };
-    </script>
   </head>
 
   <body
@@ -147,7 +93,7 @@
             </div>
           </div>
 
-          <!-- Menu Desktop (Hidden on mobile/tablet portrait) -->
+          <!-- Menu Desktop -->
           <nav class="hidden lg:flex space-x-8 items-center">
             <button
               onclick="navigateTo('home')"
@@ -297,9 +243,9 @@
             class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-azul-50 rounded-full opacity-50 blur-3xl pointer-events-none"
           ></div>
 
-          <div class="container mx-auto px-4 md:px-8">
+          <div class="container mx-auto px-4 md:px-8 relative">
             <div
-              class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20"
+              class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 pb-16"
             >
               <div class="w-full lg:w-1/2" data-aos="fade-right">
                 <div class="relative group">
@@ -391,12 +337,22 @@
                 </div>
               </div>
             </div>
+
+            <!-- Seta Sobre -> Acomodações -->
+            <div
+              onclick="document.getElementById('acomodacoes').scrollIntoView({ behavior: 'smooth' })"
+              class="absolute bottom-0 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer z-20 group p-4"
+            >
+              <i
+                class="fas fa-chevron-down text-azul-900 text-xl md:text-2xl opacity-50 group-hover:opacity-100 transition duration-300 drop-shadow-md"
+              ></i>
+            </div>
           </div>
         </section>
 
         <!-- Acomodações Preview -->
-        <section class="py-16 md:py-24 bg-gray-50">
-          <div class="container mx-auto px-4 md:px-8">
+        <section id="acomodacoes" class="py-16 md:py-24 bg-gray-50 relative">
+          <div class="container mx-auto px-4 md:px-8 relative">
             <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
               <span
                 class="text-dourado font-bold tracking-widest text-xs uppercase mb-2 block"
@@ -408,9 +364,8 @@
               <div class="w-16 h-1 bg-dourado mx-auto rounded-full"></div>
             </div>
 
-            <!-- Responsividade ajustada: Mobile 1 col, Tablet 2 col, Desktop 3 col -->
             <div
-              class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+              class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 pb-12"
             >
               <!-- Card 1 -->
               <div
@@ -527,12 +482,22 @@
                 </div>
               </div>
             </div>
+
+            <!-- Seta Acomodações -> Depoimentos -->
+            <div
+              onclick="document.getElementById('depoimentos').scrollIntoView({ behavior: 'smooth' })"
+              class="absolute bottom-0 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer z-20 group p-4"
+            >
+              <i
+                class="fas fa-chevron-down text-azul-900 text-xl md:text-2xl opacity-50 group-hover:opacity-100 transition duration-300 drop-shadow-md"
+              ></i>
+            </div>
           </div>
         </section>
 
         <!-- Depoimento -->
-        <section class="py-20 bg-azul-900 text-white relative">
-          <div class="container mx-auto px-4 text-center">
+        <section id="depoimentos" class="py-20 bg-azul-900 text-white relative">
+          <div class="container mx-auto px-4 text-center relative pb-12">
             <i
               class="fas fa-quote-right text-3xl md:text-5xl text-dourado mb-8 opacity-30"
             ></i>
@@ -561,11 +526,21 @@
                 </div>
               </div>
             </div>
+
+            <!-- Seta Depoimentos -> Rota -->
+            <div
+              onclick="document.getElementById('rota').scrollIntoView({ behavior: 'smooth' })"
+              class="absolute bottom-0 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer z-20 group p-4"
+            >
+              <i
+                class="fas fa-chevron-down text-white text-xl md:text-2xl opacity-80 group-hover:opacity-100 transition duration-300 drop-shadow-md"
+              ></i>
+            </div>
           </div>
         </section>
 
         <!-- Rota -->
-        <section id="rota" class="py-0">
+        <section id="rota" class="py-0 relative">
           <div class="flex flex-col lg:flex-row min-h-[500px]">
             <div
               class="w-full lg:w-1/2 bg-gray-100 flex items-center justify-center p-8 md:p-16 order-2 lg:order-1"
@@ -883,7 +858,6 @@
       </main>
 
       <!-- ================= PRIVACY / TERMS ================= -->
-      <!-- Views mantidas mas classes wrapper padronizadas -->
       <main id="view-privacy" class="hidden animate-fade-in">
         <div class="relative py-20 bg-azul-900 text-white">
           <div class="container mx-auto px-4 relative z-10 text-center">
@@ -902,16 +876,52 @@
           <div
             class="bg-white p-6 md:p-12 rounded-lg shadow-xl prose prose-lg text-gray-600 w-full"
           >
-            <!-- Conteúdo igual ao anterior -->
             <h2 class="text-2xl font-bold text-azul-900 mb-6 font-serif">
               1. Introdução
             </h2>
-            <p class="mb-6">A Pousada Secreta valoriza a sua privacidade...</p>
+            <p class="mb-6">
+              A Pousada Secreta valoriza a sua privacidade e está comprometida
+              em proteger os seus dados pessoais. Esta política explica como
+              coletamos, usamos e protegemos as informações que você compartilha
+              conosco ao utilizar nosso site e serviços.
+            </p>
             <h2 class="text-2xl font-bold text-azul-900 mb-6 font-serif">
               2. Coleta de Dados
             </h2>
-            <p class="mb-4">Podemos coletar as seguintes informações...</p>
-            <!-- ... restante do texto ... -->
+            <p class="mb-4">
+              Podemos coletar as seguintes informações quando você faz uma
+              reserva ou entra em contato conosco:
+            </p>
+            <ul class="list-disc pl-6 mb-6 space-y-2">
+              <li>
+                Nome completo e informações de contato (e-mail, telefone).
+              </li>
+              <li>Dados demográficos (como endereço e código postal).</li>
+              <li>Preferências de estadia e solicitações especiais.</li>
+            </ul>
+            <h2 class="text-2xl font-bold text-azul-900 mb-6 font-serif">
+              3. Uso das Informações
+            </h2>
+            <p class="mb-6">
+              Utilizamos seus dados para processar reservas, melhorar nossos
+              serviços, enviar ofertas promocionais (caso tenha optado por
+              recebê-las) e garantir uma experiência personalizada durante sua
+              estadia.
+            </p>
+            <h2 class="text-2xl font-bold text-azul-900 mb-6 font-serif">
+              4. Segurança
+            </h2>
+            <p class="mb-6">
+              Implementamos medidas de segurança robustas para proteger seus
+              dados contra acesso não autorizado, alteração ou divulgação.
+            </p>
+            <h2 class="text-2xl font-bold text-azul-900 mb-6 font-serif">
+              5. Contato
+            </h2>
+            <p>
+              Se tiver dúvidas sobre nossa política de privacidade, entre em
+              contato através do e-mail: <strong>reservas@secreta.com</strong>.
+            </p>
           </div>
         </div>
       </main>
@@ -937,8 +947,59 @@
             <h2 class="text-2xl font-bold text-azul-900 mb-6 font-serif">
               1. Aceitação dos Termos
             </h2>
-            <p class="mb-6">Ao acessar o site e efetuar reservas...</p>
-            <!-- ... restante do texto ... -->
+            <p class="mb-6">
+              Ao acessar o site e efetuar reservas na Pousada Secreta, você
+              concorda com os termos e condições descritos abaixo. Recomendamos
+              a leitura atenta antes de confirmar sua estadia.
+            </p>
+            <h2 class="text-2xl font-bold text-azul-900 mb-6 font-serif">
+              2. Reservas e Pagamentos
+            </h2>
+            <p class="mb-4">
+              Para confirmar a reserva, é necessário o pagamento de 50% do valor
+              total da estadia. O restante deverá ser pago no momento do
+              check-in.
+            </p>
+            <ul class="list-disc pl-6 mb-6 space-y-2">
+              <li>
+                Aceitamos cartões de crédito, débito e transferências bancárias.
+              </li>
+              <li>
+                Tarifas sujeitas a alteração sem aviso prévio (exceto reservas
+                confirmadas).
+              </li>
+            </ul>
+            <h2 class="text-2xl font-bold text-azul-900 mb-6 font-serif">
+              3. Cancelamento e No-Show
+            </h2>
+            <p class="mb-6">
+              Cancelamentos feitos com até 15 dias de antecedência terão
+              reembolso integral. Cancelamentos com menos de 15 dias implicam na
+              retenção do sinal. O não comparecimento (No-Show) será cobrado
+              integralmente.
+            </p>
+            <h2 class="text-2xl font-bold text-azul-900 mb-6 font-serif">
+              4. Regras de Convivência
+            </h2>
+            <p class="mb-4">
+              Prezamos pelo sossego e bem-estar de todos os hóspedes.
+            </p>
+            <ul class="list-disc pl-6 mb-6 space-y-2">
+              <li>
+                <strong>Check-in:</strong> a partir das 14h |
+                <strong>Check-out:</strong> até às 12h.
+              </li>
+              <li>Lei do Silêncio: respeitar o silêncio após às 22h.</li>
+              <li>Não é permitido fumar no interior das suítes.</li>
+            </ul>
+            <h2 class="text-2xl font-bold text-azul-900 mb-6 font-serif">
+              5. Responsabilidades
+            </h2>
+            <p>
+              A pousada não se responsabiliza por objetos de valor deixados fora
+              do cofre da suíte. Danos causados às instalações serão cobrados no
+              check-out.
+            </p>
           </div>
         </div>
       </main>
@@ -975,7 +1036,7 @@
             </div>
           </div>
 
-          <!-- Coluna 2 (Agora visível no mobile) -->
+          <!-- Coluna 2 -->
           <div>
             <h4
               class="text-dourado font-bold text-sm uppercase tracking-widest mb-6"
@@ -1219,111 +1280,6 @@
     <!-- SCRIPTS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script>
-      AOS.init({
-        once: true,
-        offset: 50,
-        duration: 800,
-        easing: "ease-out-cubic",
-      });
-      flatpickr(".flatpickr", { minDate: "today", dateFormat: "d/m/Y" });
-
-      function navigateTo(viewName, sectionId = null) {
-        const views = ["view-home", "view-rooms", "view-privacy", "view-terms"];
-        views.forEach((id) =>
-          document.getElementById(id).classList.add("hidden")
-        );
-
-        const targetView = document.getElementById("view-" + viewName);
-        if (targetView) {
-          targetView.classList.remove("hidden");
-          setTimeout(() => AOS.refresh(), 100);
-        }
-
-        if (sectionId) {
-          setTimeout(() => {
-            const el = document.getElementById(
-              sectionId === "rota" || sectionId === "sobre"
-                ? sectionId
-                : "detail-" + sectionId
-            );
-            if (el) el.scrollIntoView({ behavior: "smooth" });
-          }, 100);
-        } else {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }
-      }
-
-      const navbar = document.getElementById("navbar");
-      const navTexts = document.querySelectorAll(".nav-text-color");
-
-      window.addEventListener("scroll", () => {
-        if (window.scrollY > 20) {
-          navbar.classList.remove("nav-transparent");
-          navbar.classList.add("nav-scrolled");
-          navTexts.forEach((el) => {
-            if (
-              !el.classList.contains("text-white") &&
-              !el.parentElement.classList.contains("bg-azul-900")
-            ) {
-              el.classList.remove("text-white");
-              el.classList.add("text-azul-900");
-            }
-            if (el.classList.contains("text-white")) {
-              el.classList.remove("text-white");
-              el.classList.add("text-azul-900");
-            }
-          });
-        } else {
-          navbar.classList.add("nav-transparent");
-          navbar.classList.remove("nav-scrolled");
-          navTexts.forEach((el) => {
-            if (el.classList.contains("text-azul-900")) {
-              el.classList.remove("text-azul-900");
-              el.classList.add("text-white");
-            }
-          });
-        }
-      });
-
-      function toggleMobileMenu() {
-        document.getElementById("mobile-menu").classList.toggle("hidden");
-      }
-
-      // Modal
-      const modal = document.getElementById("booking-modal");
-      const backdrop = document.getElementById("modal-backdrop");
-      const content = document.getElementById("modal-content");
-      const roomSelect = document.getElementById("modal-room-select");
-
-      function openBookingModal(preselectedRoom = null) {
-        modal.classList.remove("hidden");
-        setTimeout(() => {
-          backdrop.classList.remove("opacity-0");
-          content.classList.remove("scale-95", "opacity-0");
-        }, 10);
-        if (preselectedRoom) roomSelect.value = preselectedRoom;
-      }
-
-      function closeBookingModal() {
-        backdrop.classList.add("opacity-0");
-        content.classList.add("scale-95", "opacity-0");
-        setTimeout(() => modal.classList.add("hidden"), 300);
-      }
-
-      modal.addEventListener("click", (e) => {
-        // Clicar fora do conteúdo fecha (backdrop está separado visualmente mas o clique propaga no wrapper)
-        if (e.target.id === "booking-modal" || e.target === backdrop)
-          closeBookingModal();
-      });
-
-      function subscribeNewsletter() {
-        const emailInput = document.getElementById("newsletter-email");
-        if (emailInput.value) {
-          alert(`Obrigado! O e-mail ${emailInput.value} foi cadastrado.`);
-          emailInput.value = "";
-        }
-      }
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>

@@ -1,0 +1,56 @@
+/* Tipografia */
+body {
+  font-family: "Source Sans Pro", sans-serif;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Playfair Display", serif;
+}
+
+/* Navbar Transição */
+.nav-scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+.nav-transparent {
+  background: transparent;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* Hero Parallax Otimizado */
+.hero-bg {
+  background-image: url("https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* Scroll no mobile melhora performance e evita bugs de viewport */
+  background-attachment: scroll;
+}
+
+@media (min-width: 1024px) {
+  .hero-bg {
+    background-attachment: fixed;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e3a8a;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3b82f6;
+}
